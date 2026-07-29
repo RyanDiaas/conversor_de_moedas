@@ -1,4 +1,5 @@
 import requests #importando lib requests para acessar api
+from datetime import datetime #importando lib para pegar o horário em que a conversão foi realizada.
 
 def menu():
     '''Função usada para exibir o 1º menu do programa'''
@@ -46,60 +47,83 @@ def conversao_moeda(moeda, valor):
 
 
 print('--- CONVERSOR DE MOEDAS ---')
+
+log_conversao = list() #Lista usada para armazenar os logs dentro dos cases de conversão.
+
 while True:
-    #Aqui começa a espécie de "programa principal"
+    #Aqui começa o "programa principal"
     menu()
     try:
         opcao_inicial = int(input('>>> Digite o número da opção desejada: '))
     except ValueError:
         print('Digite um número inteiro...')
     else:
-        if (opcao_inicial == 1):
-
-            moedas_disponiveis()
-            try:
-                escolha_moeda = int(input('>>> Digite o número da opção desejada: '))
-            except ValueError:
-                print('Erro: Digite um valor inteiro')
-            else:
-                match(escolha_moeda):
-                    case 1:
-                        cotacao_atual = cotacao_moeda('USD-BRL')
-                        print(f'\n[R$ 1,00 = {cotacao_atual} USD]\n')
-                    case 2:
-                        cotacao_atual = cotacao_moeda('CAD-BRL')
-                        print(f'\n[R$ 1,00 = {cotacao_atual} CAD]\n')
-                    case 3:
-                        cotacao_atual = cotacao_moeda('EUR-BRL')
-                        print(f'\n[R$ 1,00 = {cotacao_atual} EUR]\n')
-                    case _:
-                        print('Opção inválida.')
-
-        elif (opcao_inicial == 2):
-            moedas_disponiveis()
-            try:
-                escolha_moeda = int(input('>>> Digite o número da opção desejada: '))
-            except ValueError:
-                print('Erro: Digite um valor inteiro')
-            else:
-                match(escolha_moeda):
+        match(opcao_inicial):
+            case 1:
+                moedas_disponiveis()
+                try:
+                    escolha_moeda = int(input('>>> Digite o número da opção desejada: '))
+                except ValueError:
+                    print('Erro: Digite um valor inteiro')
+                else:
+                    match(escolha_moeda):
                         case 1:
-                            valor = float(input('\n>>> Digite o valor em DOLARES para conversão: '))
-                            valor_convertido = conversao_moeda('USD-BRL', valor)
-                            print(f'R$ {valor} = {valor_convertido} USD')
+                            cotacao_atual = cotacao_moeda('USD-BRL')
+                            print(f'\n[R$ 1,00 = {cotacao_atual} USD]\n')
                         case 2:
-                            valor = float(input('\n>>> Digite o valor em DOLAR CANADENSE para conversão: '))
-                            valor_convertido = conversao_moeda('CAD-BRL', valor)
-                            print(f'R$ {valor} = {valor_convertido} USD')
+                            cotacao_atual = cotacao_moeda('CAD-BRL')
+                            print(f'\n[R$ 1,00 = {cotacao_atual} CAD]\n')
                         case 3:
-                            valor = float(input('\n>>> Digite o valor em EURO para conversão: '))
-                            valor_convertido = conversao_moeda('EUR-BRL', valor)
-                            print(f'R$ {valor} = {valor_convertido} USD')
+                            cotacao_atual = cotacao_moeda('EUR-BRL')
+                            print(f'\n[R$ 1,00 = {cotacao_atual} EUR]\n')
                         case _:
                             print('Opção inválida.')
-        elif (opcao_inicial == 3):
-            break
-        else:
-            print('>>> Opção inválida <<<')
+            case 2:
+                moedas_disponiveis()
+                try:
+                    escolha_moeda = int(input('>>> Digite o número da opção desejada: '))
+                except ValueError:
+                    print('Erro: Digite um valor inteiro')
+                else:
+                    match(escolha_moeda):
+                            case 1:
+                                valor = float(input('\n>>> Digite o valor em DOLARES para conversão: '))
+                                valor_convertido = conversao_moeda('USD-BRL', valor)
+                                #Horário em que é realizado a conversão, serve para a saída.
+                                momento_cotacao = datetime.now()
+                                momento_formatado = momento_cotacao.strftime("%d/%m/%Y %H:%M")
+                                #Saidas do projeto: 1ª adiciona ao final da lista, caso seja chamada e a segunda exibe no terminal
+                                log_conversao.append(f'[{momento_formatado}] - {valor} USD = R$ {valor_convertido}\n')
+                                print(f'[{momento_formatado}] - {valor} USD = R$ {valor_convertido}')
+
+                            case 2:
+                                valor = float(input('\n>>> Digite o valor em DOLAR CANADENSE para conversão: '))
+                                valor_convertido = conversao_moeda('CAD-BRL', valor)
+                                #Horário em que é realizado a conversão, serve para a saída.
+                                momento_cotacao = datetime.now()
+                                momento_formatado = momento_cotacao.strftime("%d/%m/%Y %H:%M")
+                                #Saidas do projeto: 1ª adiciona ao final da lista, caso seja chamada e a segunda exibe no terminal
+                                log_conversao.append(f'[{momento_formatado}] - {valor} CAD = R$ {valor_convertido}\n')
+                                print(f'[{momento_formatado}] - CAD-BRL {valor} = R$ {valor_convertido} ')
+                            case 3:
+                                valor = float(input('\n>>> Digite o valor em EURO para conversão: '))
+                                valor_convertido = conversao_moeda('EUR-BRL', valor)
+                                #Horário em que é realizado a conversão, serve para a saída.
+                                momento_cotacao = datetime.now()
+                                momento_formatado = momento_cotacao.strftime("%d/%m/%Y %H:%M")
+                                #Saidas do projeto: 1ª adiciona ao final da lista, caso seja chamada e a segunda exibe no terminal
+                                log_conversao.append(f'[{momento_formatado}] - {valor} EUR = R$ {valor_convertido}\n')
+                                print(f'[{momento_formatado}] - EUR {valor} = R$ {valor_convertido}')
+                            case _:
+                                print('Opção inválida.')     
+            case 3:
+                #Inserção de logs da conversão em arquivo de texto
+                with open("log_conversao.txt", "a") as arquivo:
+                    for i in log_conversao:
+                        arquivo.write(i)
+                break
+            case _:
+                print('>>> Opção inválida <<<')
+
 
 print('Finalizando programa...')
