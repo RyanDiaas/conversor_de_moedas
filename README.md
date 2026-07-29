@@ -12,6 +12,7 @@ Projeto desenvolvido em Python com intuito de praticar consumo de APIs REST util
 - Converter valores para Real (BRL)
 - Tratamento de erros de conexão
 - Menu interativo no terminal
+- Histórico de conversões
 
 ---
 
@@ -51,7 +52,7 @@ python main.py
 
 ---
 
-## Exemplo de utilização
+## Exemplo de utilização terminal
 
 ```
 --- COTAÇÃO DE MOEDAS ---
@@ -71,7 +72,16 @@ python main.py
 Cotação atual:
 1 USD = R$ 5,43
 ```
-
+---
+## Exemplo de histórico de conversão
+```
+[28/07/2026 22:05] - 550.0 USD = R$ 2827.0
+[28/07/2026 22:06] - 893.3 USD = R$ 4591.562
+[28/07/2026 22:08] - 1621.0 EUR = R$ 9482.85
+[28/07/2026 22:08] - 1512.0 CAD = R$ 5503.68
+[28/07/2026 22:08] - 2030.0 CAD = R$ 7389.20
+[28/07/2026 22:08] - 42.09 EUR = R$ 246.23
+```
 ---
 
 ## API utilizada
@@ -89,6 +99,7 @@ https://docs.awesomeapi.com.br/api-de-moedas
 - Consumo de APIs REST
 - Requisições HTTP
 - Manipulação de JSON
+- Manipulação de arquivos de texto
 - Tratamento de exceções
 - Estruturas condicionais
 - Estruturas de repetição
