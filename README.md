@@ -41,13 +41,17 @@ cd conversor-moedas
 Instale as dependências:
 
 ```bash
-pip install requests
+pip install requirements.txt
 ```
 
 Execute o programa:
 
 ```bash
-python main.py
+python main.py 
+
+ou 
+
+python3 main.py
 ```
 
 ---
