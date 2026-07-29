@@ -93,8 +93,8 @@ while True:
                                 momento_cotacao = datetime.now()
                                 momento_formatado = momento_cotacao.strftime("%d/%m/%Y %H:%M")
                                 #Saidas do projeto: 1ª adiciona ao final da lista, caso seja chamada e a segunda exibe no terminal
-                                log_conversao.append(f'[{momento_formatado}] - {valor} USD = R$ {valor_convertido}\n')
-                                print(f'[{momento_formatado}] - {valor} USD = R$ {valor_convertido}')
+                                log_conversao.append(f'[{momento_formatado}] - {valor} USD = R$ {valor_convertido:.2f}\n')
+                                print(f'[{momento_formatado}] - {valor} USD = R$ {valor_convertido:.2f}')
 
                             case 2:
                                 valor = float(input('\n>>> Digite o valor em DOLAR CANADENSE para conversão: '))
@@ -103,8 +103,8 @@ while True:
                                 momento_cotacao = datetime.now()
                                 momento_formatado = momento_cotacao.strftime("%d/%m/%Y %H:%M")
                                 #Saidas do projeto: 1ª adiciona ao final da lista, caso seja chamada e a segunda exibe no terminal
-                                log_conversao.append(f'[{momento_formatado}] - {valor} CAD = R$ {valor_convertido}\n')
-                                print(f'[{momento_formatado}] - CAD-BRL {valor} = R$ {valor_convertido} ')
+                                log_conversao.append(f'[{momento_formatado}] - {valor} CAD = R$ {valor_convertido:.2f}\n')
+                                print(f'[{momento_formatado}] - CAD-BRL {valor} = R$ {valor_convertido:.2f} ')
                             case 3:
                                 valor = float(input('\n>>> Digite o valor em EURO para conversão: '))
                                 valor_convertido = conversao_moeda('EUR-BRL', valor)
@@ -112,8 +112,8 @@ while True:
                                 momento_cotacao = datetime.now()
                                 momento_formatado = momento_cotacao.strftime("%d/%m/%Y %H:%M")
                                 #Saidas do projeto: 1ª adiciona ao final da lista, caso seja chamada e a segunda exibe no terminal
-                                log_conversao.append(f'[{momento_formatado}] - {valor} EUR = R$ {valor_convertido}\n')
-                                print(f'[{momento_formatado}] - EUR {valor} = R$ {valor_convertido}')
+                                log_conversao.append(f'[{momento_formatado}] - {valor} EUR = R$ {valor_convertido:.2f}\n')
+                                print(f'[{momento_formatado}] - EUR {valor} = R$ {valor_convertido:.2f}')
                             case _:
                                 print('Opção inválida.')     
             case 3:
