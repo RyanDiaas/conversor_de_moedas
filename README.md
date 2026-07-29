@@ -35,13 +35,13 @@ git clone https://github.com/RyanDiaas/conversor_de_moedas.git
 Entre na pasta:
 
 ```bash
-cd conversor-moedas
+cd conversor_de_moedas
 ```
 
 Instale as dependências:
 
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 Execute o programa:
